@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from "react";
 import { Link, Navigate } from "react-router-dom";
-import { useText } from "../context/TextContext";
-import { useAuth } from "../context/AuthContext";
+import { useText } from "../../context/TextContext";
+import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
     const Text = useText();
     const navigate = useNavigate();
     const { isLoggedIn, _, logout } = useAuth();
+    const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
     const handleSignUp = (route) => {
         navigate(`/${route}`)
     }
+    const toggleMobileNav = () => {
+        setIsMobileNavOpen(!isMobileNavOpen);
+    };
     return (
-        <nav className="container navbar navbar-expand-lg navbar-light bg-primary-subtle  fixed-top">
+        <nav className="container navbar navbar-expand-lg navbar-light bg-primary-subtle fixed-top">
             <div className="container-fluid">
                 <Link className="navbar-brand" >{Text.BOOKIFY}</Link>
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button className="navbar-toggler" onClick={toggleMobileNav} type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
-                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                <div className={`collapse navbar-collapse ${isMobileNavOpen ? 'show' : ''}`} id="navbarSupportedContent">
                     <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to='/' >{Text.HOME}</Link>
@@ -49,7 +53,7 @@ const NavBar = () => {
                         <input className="form-control me-2 border-success" type="search" placeholder={Text.SEARCH_PLACEHOLDER} aria-label="Search" />
                         <button className="btn btn-outline-success" type="submit">{Text.SEARCH}</button>
                     </form>
-                    <ul className="navbar-nav mb-2 mb-lg-0">
+                    <ul className="navbar-nav mb-2 mb-lg-0 d-flex flex-row">
 
                         {
                             isLoggedIn ?

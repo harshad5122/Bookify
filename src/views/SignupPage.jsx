@@ -1,10 +1,9 @@
 import React from "react";
+import SignipForm from "../components/Form/SignupForm";
 
 const SignUp = () => {
     return (
-        <div className="container content-padding">
-            <h1>SignUp Page</h1>
-        </div>
+        <SignipForm />
     )
 }
 

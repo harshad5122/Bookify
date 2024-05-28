@@ -19,17 +19,16 @@ export const fetchBookData = async () => {
     }
 }
 
-export const fetchUser = async (username, password) => {
-    console.log('username', username)
-    console.log('password', password)
-    API_URL = 'userLoginnnnnnnnnn';
+export const fetchUser = async (formData) => {
+    console.log('formData from service file: ', formData)
+    API_URL = 'https://recruitment-api.pyt1.stg.jmr.pl/login';
     try {
-        const response = await fetch('https://recruitment-api.pyt1.stg.jmr.pl/login', {
+        const response = await fetch(API_URL, {
             method: 'POST', // Assuming it's a POST request
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ login: username, password })
+            body: JSON.stringify(formData)
         });
         if (!response.ok) {
             throw new Error('User Not Found');
@@ -38,9 +37,37 @@ export const fetchUser = async (username, password) => {
         return data;
     } catch (error) {
         console.log('Error in login user:', error)
-        console.log('jijijiijijij', MockUsersData)
         return MockUsersData.find(
-            user => user.username === username && user.password === password
+            user => user.username === formData?.username && user.password === formData?.password
         );
+    }
+}
+
+export const createUser = async (formData) => {
+    API_URL = 'http://dummyjson.com/users/add';
+    const dummyData = {
+        username: 'john_doe',
+        password: 'P@ssw0rd!',
+        email: 'john.doe@example.com',
+        confirmPassword: 'P@ssw0rd!',
+        phoneNumber: '123-456-7890'
+    };
+    console.log('asdsdasdas', JSON.stringify(formData))
+    try {
+        const response = await fetch(API_URL, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        if (!response.ok) {
+            throw new Error('User not created')
+        }
+        const data = response?.json();
+        return data;
+    } catch (error) {
+        console.log("Error in Create user API: ", error);
+        return dummyData;
     }
 }

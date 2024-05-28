@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchBookData } from "../services/services";
 import Loader from "./Loader";
-import BookCard from "../components/BookCard";
+import BookCard from "../components/Cards/BookCard";
 
 const BookStorePage = () => {
     const [bookData, setBookData] = useState([]);
