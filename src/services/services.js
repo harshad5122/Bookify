@@ -7,7 +7,6 @@ export const fetchBookData = async () => {
     API_URL = 'https://freetestapi.com/api/v1/books'
     try {
         const response = await fetch(API_URL);
-        console.log('kkkkk', response)
         if (!response.ok) {
             throw new Error('API call failed')
         }
@@ -25,17 +24,17 @@ export const fetchUser = async (username, password) => {
     console.log('password', password)
     API_URL = 'userLoginnnnnnnnnn';
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch('https://recruitment-api.pyt1.stg.jmr.pl/login', {
             method: 'POST', // Assuming it's a POST request
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ username, password })
+            body: JSON.stringify({ login: username, password })
         });
         if (!response.ok) {
             throw new Error('User Not Found');
         }
-        const data = response.data();
+        const data = response.json();
         return data;
     } catch (error) {
         console.log('Error in login user:', error)
