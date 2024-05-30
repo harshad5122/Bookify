@@ -68,7 +68,7 @@ const NavBar = () => {
                                             <button className="btn btn-outline-success me-2" aria-current="page" onClick={() => { handleSignUp('login') }} >{Text.LOGIN}</button>
                                         </li>
                                         <li className="nav-item">
-                                            <button className="btn btn-outline-success" aria-current="page" onClick={() => { handleSignUp('signup') }} >{Text.SIGNUP}</button>
+                                            <button className="btn btn-outline-primary" aria-current="page" onClick={() => { handleSignUp('signup') }} >{Text.SIGNUP}</button>
                                         </li>
                                     </>
                                 )

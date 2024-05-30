@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 
 const ContactUsPage = () => {
     const [isLoading, setIsLoading] = useState(true);

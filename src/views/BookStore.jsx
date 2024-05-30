@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { fetchBookData } from "../services/services";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 import BookCard from "../components/Cards/BookCard";
 
 const BookStorePage = () => {

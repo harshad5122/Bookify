@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useText } from "../context/TextContext";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 
 const HomePage = () => {
     const Text = useText();

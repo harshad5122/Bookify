@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Loader from "./Loader";
+import Loader from "../components/Loader";
 import LoginForm from "../components/Form/LoginForm";
 
 const Login = () => {
